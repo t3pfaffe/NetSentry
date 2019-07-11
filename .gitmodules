@@ -1,0 +1,6 @@
+[submodule "balena-pihole"]
+	path = balena-pihole
+	url = https://github.com/klutchell/balena-pihole.git
+[submodule "balena-ubnt"]
+	path = balena-ubnt
+	url = https://github.com/balena-io-playground/balena-ubnt.git
