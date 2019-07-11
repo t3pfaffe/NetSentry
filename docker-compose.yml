@@ -49,6 +49,9 @@ services:
   
   unms:
     build: ./balena-ubnt/unms
+    ports:
+      - "4443:443"
+      - "4080:80"
     volumes:
      - "unms-data:/config"
     restart: unless-stopped
