@@ -35,10 +35,14 @@ services:
     build: ./balena-ubnt/unifi
     ports:
       # See https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used
-      - "10001:10001/udp" # AP discovery 
-      - "3478:3478/udp" # STUN
-      - "6789:6789" # Mobile speed tests
-      - "8080:8080" # Device controller communication
+      - "3478:3478/udp"
+      - "6789:6789"
+      - "8080:8080"
+      - "8081:8081"
+      - "8443:8443"
+      - "8843:8843"
+      - "8880:8880"
+      - "10001:10001/udp"
     volumes:
       - "unifi-data:/unifi"
     restart: unless-stopped
