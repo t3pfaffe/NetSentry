@@ -47,11 +47,3 @@ services:
       - "unifi-data:/unifi"
     restart: unless-stopped
   
-  unms:
-    build: ./balena-ubnt/unms
-    ports:
-      - "4443:443"
-      - "4080:80"
-    volumes:
-     - "unms-data:/config"
-    restart: unless-stopped
