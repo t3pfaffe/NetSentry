@@ -3,4 +3,4 @@
 	url = https://github.com/klutchell/balena-pihole.git
 [submodule "balena-ubnt"]
 	path = balena-ubnt
-	url = https://github.com/balena-io-playground/balena-ubnt.git
+	url = https://github.com/t3pfaffe/balena-ubnt.git
