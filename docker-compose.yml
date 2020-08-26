@@ -50,7 +50,6 @@ services:
       - "2025:2025/udp"
     environment:
       - TZ=${TIME_ZONE:-America/New_York}
-      - SECURE_LINK_SECRET=${SEC_LINK_SECRET}
       - PUBLIC_HTTPS_PORT=4443
       - PUBLIC_WS_PORT=4443
     volumes:
