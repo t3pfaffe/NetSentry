@@ -6,6 +6,14 @@ volumes:
   dnscrypt_config:
   unifi-data:
   unms-data:
+  config:
+  log:
+  log2:
+  run:
+  run2:
+  work:
+  
+  
 
 services:
   pihole:
@@ -40,8 +48,16 @@ services:
       - "1900:1900/udp"
       - "10001:10001/udp"
     volumes:
-      - "unifi-data:/unifi"
-
+      # Unifi v5.0.7 creates all of these directories (some remain empty)
+      - config:/var/lib/unifi
+      - log:/usr/lib/unifi/logs
+      - log2:/var/log/unifi
+      - run:/usr/lib/unifi/run
+      - run2:/run/unifi
+      - work:/usr/lib/unifi/work
+      - ../unifi-to-backup/config.gateway.json:/var/lib/unifi/sites/default/config.gateway.json
+      - ../unifi-to-backup/backup:/var/lib/unifi/backup 
+      
   unms:
     build: ./balena-ubnt/unms
     ports:
