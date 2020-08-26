@@ -29,7 +29,7 @@ services:
 
 
   unifi:
-    build: ./unifi
+    build: ./balena-ubnt/unifi
     ports:
       # See https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used
       - "3478:3478/udp"
@@ -47,7 +47,7 @@ services:
       - "unifi-data:/unifi"
 
   unms:
-    build: ./unms
+    build: ./balena-ubnt/unms
     ports:
       - "4443:443"
       - "4080:80"
