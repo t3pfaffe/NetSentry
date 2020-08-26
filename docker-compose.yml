@@ -8,6 +8,7 @@ volumes:
   unms-data:
 
 services:
+
   pihole:
     build: ./balena-pihole/pihole
     privileged: true
@@ -25,9 +26,10 @@ services:
       - 'dnscrypt_config:/config'
     ports:
       - '5053:5053/udp'
-  
+
+
   unifi:
-    build: ./balena-ubnt/unifi
+    build: ./unifi
     ports:
       # See https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used
       - "3478:3478/udp"
@@ -39,13 +41,21 @@ services:
       - "27117:27117"
       - "1900:1900/udp"
       - "10001:10001/udp"
+    # environment:
+    #   - JAVA_OPTS=${JAVA_OPTIONS}
     volumes:
       - "unifi-data:/unifi"
-  
+
   unms:
-    build: ./balena-ubnt/unms
+    build: ./unms
     ports:
       - "4443:443"
       - "4080:80"
+      - "2025:2025/udp"
+    environment:
+      - TZ=${TIME_ZONE:-America/New_York}
+      - SECURE_LINK_SECRET=${SEC_LINK_SECRET}
+      - PUBLIC_HTTPS_PORT=4443
+      - PUBLIC_WS_PORT=4443
     volumes:
-     - "unms-data:/config"
+      - "unms-data:/config"
