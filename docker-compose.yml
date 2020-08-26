@@ -55,8 +55,6 @@ services:
       - run:/usr/lib/unifi/run
       - run2:/run/unifi
       - work:/usr/lib/unifi/work
-      - ../unifi-to-backup/config.gateway.json:/var/lib/unifi/sites/default/config.gateway.json
-      - ../unifi-to-backup/backup:/var/lib/unifi/backup 
       
   unms:
     build: ./balena-ubnt/unms
