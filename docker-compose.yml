@@ -12,8 +12,8 @@ volumes:
   run:
   run2:
   work:
-  
-  
+
+
 
 services:
   pihole:
@@ -35,7 +35,12 @@ services:
       - '5053:5053/udp'
 
   unifi:
-    build: ./balena-ubnt/unifi
+    image: ryansch/unifi-rpi:latest
+    container_name: unifi
+    network_mode: host
+    restart: always
+    environment:
+      JAVA_OPTS: -Xmx512M
     ports:
       # See https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used
       - "3478:3478/udp"
@@ -55,7 +60,7 @@ services:
       - run:/usr/lib/unifi/run
       - run2:/run/unifi
       - work:/usr/lib/unifi/work
-      
+
   unms:
     build: ./balena-ubnt/unms
     ports:
