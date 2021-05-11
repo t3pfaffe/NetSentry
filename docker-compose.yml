@@ -31,7 +31,7 @@ services:
       - 'dnsmasq_config:/etc/dnsmasq.d'
 
   unifi:
-    image: 'ryansch/unifi-rpi:latest'
+    image: ryansch/unifi-rpi:6.2.23-arm64v8
     container_name: unifi
     restart: unless-stopped
     network_mode: host
@@ -45,6 +45,8 @@ services:
       - "27117:27117"
       - "1900:1900/udp"
       - "10001:10001/udp"
+    environment:
+      JAVA_OPTS: -Xmx512M
     volumes:
       - 'unifi_config:/var/lib/unifi'
       - 'unifi_log:/usr/lib/unifi/logs'
