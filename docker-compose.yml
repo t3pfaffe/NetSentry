@@ -24,10 +24,9 @@ services:
       - "80:80/tcp"
     environment:
       - TZ=${TIME_ZONE:-America/New_York}
-      - WEBPASSWORD=${WEBPASSWORD}
     volumes:
-      - pihole_config:/etc/pihole/
-      - dnsmasq_config:/etc/dnsmasq.d/
+      - 'pihole_config:/etc/pihole'
+      - 'dnsmasq_config:/etc/dnsmasq.d'
     restart: unless-stopped
 
   unifi:
