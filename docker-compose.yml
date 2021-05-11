@@ -30,7 +30,7 @@ services:
       - dnsmasq_config:/etc/dnsmasq.d/
     restart: unless-stopped
 
- unifi:
+  unifi:
     image: 'ryansch/unifi-rpi:latest'
     container_name: unifi
     network_mode: host
