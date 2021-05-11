@@ -1,55 +1,57 @@
-version: '2.1'
+version: '3'
 
 volumes:
   pihole_config:
-  unifi-data:
+  dnsmasq_config:
   unms-data:
-  config:
-  log:
-  log2:
-  run:
-  run2:
-  work:
+  unifi_config:
+  unifi_log:
+  unifi_log2:
+  unifi_run:
+  unifi_run2:
+  unifi_work:
 
 services:
   pihole:
     image: pihole/pihole:latest
     container_name: pihole
-    network_mode: host
     dns:
-      - '127.0.0.1'
       - '1.1.1.1'
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "80:80/tcp"
+    environment:
+      - TZ=${TIME_ZONE:-America/New_York}
+      - WEBPASSWORD=${WEBPASSWORD}
     volumes:
-      - pihole_config:/etc/pihole
-    restart: always
+      - pihole_config:/etc/pihole/
+      - dnsmasq_config:/etc/dnsmasq.d/
+    restart: unless-stopped
 
-  unifi:
-    image: ryansch/unifi-rpi:latest
+ unifi:
+    image: 'ryansch/unifi-rpi:latest'
     container_name: unifi
     network_mode: host
     ports:
-      # See https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used
-      - "3478:3478/udp"
-      - "5514:5514"
-      - "8080:8080"
-      - "8443:8443"
-      - "8843:8843"
-      - "6789:6789"
-      - "1900:1900/udp"
-      - "10001:10001/udp"
-      - "27117:27117"
+      - '3478:3478/udp'
+      - '5514:5514'
+      - '8080:8080'
+      - '8443:8443'
+      - '8843:8843'
+      - '6789:6789'
+      - '27117:27117'
+      - '1900:1900/udp'
+      - '10001:10001/udp'
     volumes:
-      # Unifi v5.0.7 creates all of these directories (some remain empty)
-      - config:/var/lib/unifi
-      - log:/usr/lib/unifi/logs
-      - log2:/var/log/unifi
-      - run:/usr/lib/unifi/run
-      - run2:/run/unifi
-      - work:/usr/lib/unifi/work
-    environment:
-      JAVA_OPTS: -Xmx512M
-    privileged: true
-    restart: always
+      - 'unifi_config:/var/lib/unifi'
+      - 'unifi_log:/usr/lib/unifi/logs'
+      - 'unifi_log2:/var/log/unifi'
+      - 'unifi_run:/usr/lib/unifi/run'
+      - 'unifi_run2:/run/unifi'
+      - 'unifi_work:/usr/lib/unifi/work'
+    restart: unless-stopped
 
   unms:
     image: nico640/docker-unms:latest
@@ -65,4 +67,4 @@ services:
       - PUBLIC_WS_PORT=4443
     volumes:
       - unms-data:/config
-    restart: always
+    restart: unless-stopped
