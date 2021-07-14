@@ -1,4 +1,4 @@
-version: '2.1'
+version: "2.1"
 
 volumes:
   pihole_config:
@@ -27,8 +27,8 @@ services:
     environment:
       - TZ=${TIME_ZONE:-America/New_York}
     volumes:
-      - 'pihole_config:/etc/pihole'
-      - 'dnsmasq_config:/etc/dnsmasq.d'
+      - "pihole_config:/etc/pihole"
+      - "dnsmasq_config:/etc/dnsmasq.d"
 
   unifi:
     image: ryansch/unifi-rpi:6.2.26-arm64v8
@@ -48,12 +48,12 @@ services:
     environment:
       JAVA_OPTS: -Xmx512M
     volumes:
-      - 'unifi_config:/var/lib/unifi'
-      - 'unifi_log:/usr/lib/unifi/logs'
-      - 'unifi_log2:/var/log/unifi'
-      - 'unifi_run:/usr/lib/unifi/run'
-      - 'unifi_run2:/run/unifi'
-      - 'unifi_work:/usr/lib/unifi/work'
+      - "unifi_config:/var/lib/unifi"
+      - "unifi_log:/usr/lib/unifi/logs"
+      - "unifi_log2:/var/log/unifi"
+      - "unifi_run:/usr/lib/unifi/run"
+      - "unifi_run2:/run/unifi"
+      - "unifi_work:/usr/lib/unifi/work"
 
   unms:
     image: nico640/docker-unms:1.3.10
@@ -69,4 +69,4 @@ services:
       - PUBLIC_HTTPS_PORT=4443
       - PUBLIC_WS_PORT=4443
     volumes:
-      - 'unms_config:/config'
+      - "unms_config:/config"
