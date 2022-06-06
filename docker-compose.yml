@@ -31,7 +31,7 @@ services:
       - "dnsmasq_config:/etc/dnsmasq.d"
 
   unifi:
-    image: ryansch/unifi-rpi:6.5.55-arm64v8
+    image: ryansch/unifi-rpi:7.1.66-arm64v8
     container_name: unifi
     restart: unless-stopped
     network_mode: host
@@ -56,7 +56,7 @@ services:
       - "unifi_work:/usr/lib/unifi/work"
 
   unms:
-    image: nico640/docker-unms:1.3.11
+    image: nico640/docker-unms:1.4.4
     container_name: unms
     restart: unless-stopped
     ports:
