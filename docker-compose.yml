@@ -56,7 +56,7 @@ services:
       - "unifi_work:/usr/lib/unifi/work"
 
   unms:
-    image: nico640/docker-unms:1.4.4
+    image: nico640/docker-unms:1.4.8
     container_name: unms
     restart: unless-stopped
     ports:
