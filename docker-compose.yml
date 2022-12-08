@@ -31,7 +31,7 @@ services:
       - "dnsmasq_config:/etc/dnsmasq.d"
 
   unifi:
-    image: ryansch/unifi-rpi:7.1.66-arm64v8
+    image: ryansch/unifi-rpi:7.3.76-arm64v8
     container_name: unifi
     restart: unless-stopped
     network_mode: host
