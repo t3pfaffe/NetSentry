@@ -10,6 +10,7 @@ volumes:
   unifi_run:
   unifi_run2:
   unifi_work:
+  tailscale_state:
 
 services:
   pihole:
@@ -65,8 +66,25 @@ services:
       - "2025:2025/udp"
     environment:
       - TZ=${TIME_ZONE:-America/New_York}
-      - SECURE_LINK_SECRET=${SEC_LINK_SECRET}
+      - SECURE_LINK_SECRET=${UNMS_SECLINK_SECRET}
       - PUBLIC_HTTPS_PORT=4443
       - PUBLIC_WS_PORT=4443
     volumes:
       - "unms_config:/config"
+
+  tailscale:
+    image: tailscale/tailscale:stable
+    container_name: tailscale-node
+    hostname: tailscale-node
+    restart: unless-stopped
+    privileged: true # Privileged may be optional, see: https://github.com/tailscale/tailscale/issues/504
+    cap_add: # Required for tailscale
+      - net_admin
+      - sys_module
+    environment:
+      - TAILSCALE_AUTHKEY=${TAILSCALE_AUTH_SECRET}
+      - TAILSCALE_HOSTNAME=${TAILSCALE_HOSTNAME}
+      - TS_ROUTES=${TAILSCALE_ADV_ROUTES:-false}
+    volumes:
+      - "tailscale_state:/var/lib"
+    
