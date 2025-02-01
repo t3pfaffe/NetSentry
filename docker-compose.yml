@@ -20,17 +20,31 @@ services:
     container_name: pihole
     restart: unless-stopped
     network_mode: host
+    cap_add:
+      - SYS_TTY_CONFIG
+      - NET_ADMIN
+    dns:
+      - "127.0.0.1"
+      - "1.1.1.1"
     ports:
       - "53:53/tcp"
       - "53:53/udp"
       - "67:67/udp"
       - "80:80/tcp"
-    # environment:
-      # - SET_HOSTNAME="pihole"
-      # - TZ=${TIME_ZONE:-America/New_York}
+    environment:
+      DNSMASQ_LISTENING: all
+      PIHOLE_DNS_: 1.1.1.1;1.0.0.1
+      WEB_BIND_ADDR: 0.0.0.0
+      # SET_HOSTNAME: 'pihole'
+      # TZ: America/New_York
     volumes:
       - pihole_config:/etc/pihole
       - dnsmasq_config:/etc/dnsmasq.d
+    tmpfs:
+      - /var/log/pihole
+    labels:
+      io.balena.features.dbus: "1"
+      
 
   # https://github.com/balenablocks/hostname
   # https://hub.balena.io/blocks/1918776/hostname-rpi
