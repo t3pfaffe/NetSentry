@@ -100,7 +100,7 @@ services:
 
 
   unifi:
-    image: ryansch/unifi-rpi:7.3.76-arm64v8
+    image: ryansch/unifi-rpi:8.4
     container_name: unifi
     restart: unless-stopped
     network_mode: host
