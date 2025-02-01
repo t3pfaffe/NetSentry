@@ -26,7 +26,8 @@ services:
       - "67:67/udp"
       - "80:80/tcp"
     environment:
-      - TZ=${TIME_ZONE:-America/New_York}
+      # - SET_HOSTNAME="pihole"
+      # - TZ=${TIME_ZONE:-America/New_York}
     volumes:
       - "pihole_config:/etc/pihole"
       - "dnsmasq_config:/etc/dnsmasq.d"
@@ -117,9 +118,9 @@ services:
       - "4080:80"
       - "2025:2025/udp"
     environment:
-      - TZ=${TIME_ZONE:-America/New_York}
-      - SECURE_LINK_SECRET=${UNMS_SECLINK_SECRET}
+      # - TZ=${TIME_ZONE:-America/New_York}
+      # - SECURE_LINK_SECRET=${UNMS_SECLINK_SECRET}
       - PUBLIC_HTTPS_PORT=4443
       - PUBLIC_WS_PORT=4443
     volumes:
-      - "unms_config:/config"
+      - unms_config:/config
