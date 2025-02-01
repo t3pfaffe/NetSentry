@@ -25,12 +25,12 @@ services:
       - "53:53/udp"
       - "67:67/udp"
       - "80:80/tcp"
-    environment:
+    # environment:
       # - SET_HOSTNAME="pihole"
       # - TZ=${TIME_ZONE:-America/New_York}
     volumes:
-      - "pihole_config:/etc/pihole"
-      - "dnsmasq_config:/etc/dnsmasq.d"
+      - pihole_config:/etc/pihole
+      - dnsmasq_config:/etc/dnsmasq.d
 
   # https://github.com/balenablocks/hostname
   # https://hub.balena.io/blocks/1918776/hostname-rpi
