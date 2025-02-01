@@ -23,20 +23,20 @@ services:
     cap_add:
       - SYS_TTY_CONFIG
       - NET_ADMIN
-    network_mode: host
     dns:
       - "127.0.0.1"
       - "1.1.1.1"
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      - "67:67/udp"
-      - "80:80/tcp"
+    network_mode: host
+    # ports:
+    #   - "53:53/tcp"
+    #   - "53:53/udp"
+    #   - "67:67/udp"
+    #   - "80:80/tcp"
     environment:
       WEB_BIND_ADDR: 0.0.0.0
       DNSMASQ_LISTENING: all
-      SET_HOSTNAME: 'dns.33net.local'
-      # PIHOLE_DNS_: 172.64.36.1;172.64.36.2
+      # SET_HOSTNAME: pihole.local
+      # PIHOLE_DNS_: 1.1.1.1;1.0.0.1
       # TZ: America/New_York
     volumes:
       - pihole_config:/etc/pihole/
