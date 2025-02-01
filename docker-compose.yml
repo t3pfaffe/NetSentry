@@ -100,7 +100,7 @@ services:
 
 
   unifi:
-    image: ryansch/unifi-rpi:8.4
+    image: ryansch/unifi-rpi:8.4@sha256:5a27ae1608ab5331387cd4084292f299d600c8a88d8167f1c24b3bb159452058
     container_name: unifi
     restart: unless-stopped
     network_mode: host
