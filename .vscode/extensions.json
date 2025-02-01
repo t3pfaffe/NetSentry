@@ -1,5 +1,7 @@
 {
     "recommendations": [
-        "kalebpace.balena-vscode"
+        "kalebpace.balena-vscode",
+        "ms-azuretools.vscode-docker",
+        "sonichigo.validyml"
     ]
 }
