@@ -123,18 +123,18 @@ services:
       - "unifi_run2:/run/unifi"
       - "unifi_work:/usr/lib/unifi/work"
 
-  unms:
-    image: nico640/docker-unms:1.4.8
-    container_name: unms
-    restart: unless-stopped
-    ports:
-      - "4443:443"
-      - "4080:80"
-      - "2025:2025/udp"
-    environment:
-      # - TZ=${TIME_ZONE:-America/New_York}
-      # - SECURE_LINK_SECRET=${UNMS_SECLINK_SECRET}
-      - PUBLIC_HTTPS_PORT=4443
-      - PUBLIC_WS_PORT=4443
-    volumes:
-      - unms_config:/config
+  # unms:
+  #   image: nico640/docker-unms:1.4.8
+  #   container_name: unms
+  #   restart: unless-stopped
+  #   ports:
+  #     - "4443:443"
+  #     - "4080:80"
+  #     - "2025:2025/udp"
+  #   environment:
+  #     # - TZ=${TIME_ZONE:-America/New_York}
+  #     # - SECURE_LINK_SECRET=${UNMS_SECLINK_SECRET}
+  #     - PUBLIC_HTTPS_PORT=4443
+  #     - PUBLIC_WS_PORT=4443
+  #   volumes:
+  #     - unms_config:/config
