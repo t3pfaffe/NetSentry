@@ -14,7 +14,7 @@ volumes:
 
 services:
   pihole:
-    image: pihole/pihole:2024.07.0@sha256:9074d3875bc80a7079a9eb98fb691f1564fca470ee99eb2651110f48e32cef69
+    image: pihole/pihole:2025.02.7@sha256:ac63178526b71aa575069945f68e7bfb57541fefcd6150d752eeae82b5638141
     # build:
     #   context: ./balena-pihole/pihole
     privileged: true
